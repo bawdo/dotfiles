@@ -1,0 +1,109 @@
+# General Stuff
+set mbox_type=Maildir
+set spoolfile="~/Maildir/"
+set folder="~/Maildir/"
+set mask="!^\\.[^.]"
+set record="+.Sent"
+set postponed="+.Drafts"
+set from="NAME <name@example.co.jp>"
+set move="no"
+set beep="no"	# Not a fan of a noisy console.
+set ispell="/usr/bin/ispell"	# Use ispell for spell checking
+set query_command="amzn_ldap_query --trim '%s'" 	# LDAP query
+set hostname="example.co.jp"
+unset mark_old  # Do not mark messages as old.
+# http://danielwebb.us/software/email/muttrc
+set wrap_search="yes"          # wrap searches to top of mailboxes
+set quit="ask-yes"  # Ask if I really want to quit.
+set markers="no"
+set delete="yes"    # don't ask if I want to purge on <sync-mailbox>
+
+# Colors
+source ~/.muttrc-colors
+
+# bcc me on all emails written.
+my_hdr Bcc: NAME <name@example.co.jp>
+
+# Decode UTF-8 when passing stuff via pipes
+set pipe_decode="yes"
+
+# Allow me to use the esc key as a meta key
+set meta_key=yes
+
+# This will help with finding mailboxes... Forgot the source of this snippit
+mailboxes ! + `\
+for file in ~/Maildir/.*; do \
+  box=$(basename "$file"); \
+  if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.customflags' \
+      -a ! "$box" = '.subscriptions' ]; then \
+    echo -n "\"+$box\" "; \
+  fi; \
+done`
+
+# Address Book
+set alias_file=~/.mutt_aliases
+source ~/.mutt_aliases
+
+# My subscriptions
+source ~/.mutt_subscriptions
+
+# Japanese stuff
+#auto_view text/plain
+
+# Key bindings
+# Macros for editing Japanese emails
+macro compose "j" "<filter-entry>iconv -f euc-jp -t iso-2022-jp\ny" "Convert to ISO-2022-JP"
+macro compose "J" "<filter-entry>iconv -f iso-2022-jp -t euc-jp\ny" "Convert to EUC-JP"
+
+# Macros
+macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro index G "!fetchmail\r"	# Run fetchmail by hitting "G"
+macro pager G "!fetchmail\r"
+macro index M "<tag-pattern>~N\r<tag-prefix><clear-flag>N<untag-pattern>.*\r" "Mark all messages in this mailbox as read"
+macro index U "<untag-pattern>.*\r" "Mark all messages in this mailbox as read"
+#macro index Z  "<tag-pattern>~d>6m\r<tag-prefix><save-message>=.archive\r<untag-pattern>~d>6m\r<sync-mailbox>\r" "Move all emails older than 6 months to the .archive directory"  
+macro index "Zo"  "<tag-prefix><save-message>=.archive<enter>y<sync-mailbox>" "Archive current email"  
+macro index "Za" "<tag-pattern>~d>3m\n<tag-prefix><save-message>=.archive<enter>y<sync-mailbox><untag-pattern>.*\n" "Archive all emails older than 3 months"  
+macro pager \cu |urlview\n
+macro index <F5> ":source ~/.muttrc\n"
+macro pager <F5> ":source ~/.muttrc\n"
+
+# Save attachments to X dir. SOURCE:
+# http://wiki.mutt.org/?action=browse&diff=1&id=MuttFaq/Attachment
+macro attach W <save-entry><kill-line>/home/name/attachments/
+macro attach E <save-entry><kill-line>/home/name/attachments/<enter>
+
+# Search mail using nmzmail
+macro generic S "<shell-escape>nmzmail -r /home/name/Maildir/.search_result<return><change-folder>=.search_result<return>"
+
+# Composing/Sending/Forwarding/Replying
+set send_charset=us-ascii:iso-8859-1:iso-8859-15:utf-8:iso-2022-jp
+set editor="vim -c 'set ft=mail' +/^$"
+set edit_headers # Header editing :-)
+set forward_format="Fwd: %s" # Alter the barbaric default forward format <--- research this statement...
+set mime_forward=yes # This and the next option allow for forwarding with attachements.
+set mime_forward_rest=yes
+set copy # Keep sent mail copies
+set sendmail="/home/name/bin/msmtp"	# Use msmtp to send via excahnge server. See ~/.msmtprc
+set include=yes	#quote msg in reply
+
+# Reading Mail
+ignore * # Ignore/Don't show all headers
+unignore From: To: Cc: Subject: Date:	user-agent: # Except these ones :)
+hdr_order user-agent: From: To: Cc: Date: Subject: # Change the header order slightly.
+set pager_index_lines=8
+alternative_order text/plain text/html text # Display only the text part of a text/html email.
+
+# Index
+set sort=threads	# Sort by thread
+set sort_aux=date-sent  # Auxiliary sort by
+set nostrict_threads	# Lets have some fuzzy threading.
+set index_format="%6C |%Z| %[%b %d %H:%M] %-15.15L (%8u) %s" # format index
+
+# Pager
+set pager_context=3		# Display 3 lines of context in pager. When scrolling leave X messages from prev screen
+
+# Signatures
+send-hook . "set signature=''"
+send-hook '~t "(barney|fred|mailing_list)"' "set signature=~/.signature.bofh|" # BOFH Signature block

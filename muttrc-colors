@@ -1,0 +1,54 @@
+# Colors - WHERE FOREGROUND BACKGROUND REGEXP
+#Default colours. these are based on the default debian colors
+color normal default default
+color tree  yellow default
+color indicator brightyellow green
+color status  black white
+color message default default
+color attachment brightyellow default
+color hdrdefault cyan default
+color markers brightred default
+color quoted  green default
+color signature cyan default
+color tilde blue default
+color search brightyellow default
+
+# Quoting colours
+color quoted magenta default 
+color quoted1 cyan default
+color quoted2 yellow default 
+color quoted3 green default
+color quoted4 red default
+color quoted5 cyan default
+color quoted6 blue default
+color quoted7 magenta default
+color quoted8 red default
+color quoted9 yellow default
+color signature brightgreen default
+
+# Body 
+color body     yellow default     "[;:]-[)/(|]" # Smilies
+color body     yellow default     "[;:][)/(|]" # Smilies
+
+color header   brightgreen default '^To:'
+color header   brightred default '^Cc:'
+color header   brightcyan default '^From:'
+color header   brightmagenta default '^Date:'
+color header   brightcyan default '^Reply-To:'
+color header   brightyellow default '^Subject:'
+
+# Index Colours
+color index brightdefault default	'~N !~T !~F !~p !~P' # New
+color index brightdefault default	'~O !~T !~F !~p !~P' # Old
+
+# Index Colours for specific senders and recipients.
+color index brightyellow default '~C "(fred|barney)@" ~N !~P !~p !~F !~T ' # Messages to fred||barney (unread)
+color index yellow default '~C "(fred|barney)@" !~N !~P !~p !~F !~T ' # Messages to fred||barney (read)
+
+# Index Colours misc.
+color index yellow magenta  '~p !~N ~F !~T' # To me (flagged)
+color index green default       '~p !~N !~F !~T' # To me (read)
+color index brightgreen default	 '~p ~N !~F !~T' # To me (unread)
+color index brightyellow red	 '~p ~N ~d>5d !~F !~T' # To me (unread - sent more than 5 days ago)
+color index white default        '~T !~F !~p !~P' # Tagged
+color index magenta default     '~F' # Flagged
