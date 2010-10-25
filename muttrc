@@ -9,7 +9,6 @@ set from="NAME <name@example.co.jp>"
 set move="no"
 set beep="no"	# Not a fan of a noisy console.
 set ispell="/usr/bin/ispell"	# Use ispell for spell checking
-set query_command="amzn_ldap_query --trim '%s'" 	# LDAP query
 set hostname="example.co.jp"
 unset mark_old  # Do not mark messages as old.
 # http://danielwebb.us/software/email/muttrc
