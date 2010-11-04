@@ -7,7 +7,6 @@ export PAGER=less
 export LESS='-irX'
 setopt ALWAYS_TO_END
 setopt AUTO_NAME_DIRS
-AUTO_TITLE_SCREENS="yes"
 
 # Setup completion stuff
 autoload -U compinit
@@ -85,11 +84,51 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # MISC
 NNTPSERVER='nntp.perl.org' && export NNTPSERVER
 
-# Ruby Version Manager - http://rvm.beginrescueend.com/
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+# Terminal title
+AUTO_TITLE_SCREENS="yes"
+
+# If the current directory is a git repo then set GIT_BRANCH to the current branch.
+function current_git_branch()
+{
+    git branch 2> /dev/null | =grep '\*' | sed 's/^\* //'
+}
+
+function current_git_status()
+{
+    GIT_STATUS=$(git status 2> /dev/null)
+}
+
+GIT_STATUS=$(current_git_status)
+
+case $TERM in
+    xterm*)
+        chpwd() { current_git_status }
+
+        precmd()
+        {
+            if [[ x"$GIT_STATUS" != x ]]; then
+                print -Pn "\e]0;%m:%~ ($(current_git_branch))\a"
+            else
+                print -Pn "\e]0;%m:%~ \a"
+                GIT_STATUS=
+            fi
+        }
+
+        preexec()
+        {
+            if [[ $2 =~ "git checkout" ]]; then
+                current_git_status
+            fi
+        }
+    ;;
+esac
+# END Terminal title
 
 # pushd n is a PITA to type
 PD()
 {
   pushd +$1
 }
+
+# Ruby Version Manager - http://rvm.beginrescueend.com/
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
