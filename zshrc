@@ -12,6 +12,7 @@ setopt AUTO_NAME_DIRS
 autoload -U compinit
 compinit
 zstyle ':completion::complete:*' use-cache 1
+zmodload zsh/complist
 
 # Colours
 autoload -U colors
