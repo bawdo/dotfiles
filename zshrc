@@ -32,6 +32,15 @@ export GREP_COLOR="${GREP_COLOR:-1;35}"
 alias grep='grep --color=always'
 alias ls='ls -G'
 
+## Mac/Linux specific settings
+if [[ $HOME[2,5] == 'User' ]]; then
+    # Mac Stuff
+    alias ls='ls -G'
+else
+    # Linux Stuff
+    alias ls='ls --color=always'
+fi
+
 ## Prompt
 PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}> %{$reset_color%}"
 RPROMPT="  %{$fg[yellow]%}< %~ %{$reset_color%}"     # prompt for right side of screen
