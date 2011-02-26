@@ -12,9 +12,18 @@ set nosi
 
 " Turn smart indenting on for perl and ruby files
 autocmd FileType perl set smartindent
-autocmd FileType ruby set smartindent
 autocmd FileType perl set nowrap
+autocmd FileType perl set ts=4
+autocmd FileType perl set shiftwidth=4
+autocmd FileType perl set shiftround
+autocmd FileType perl set expandtab
+
+autocmd FileType ruby set smartindent
 autocmd FileType ruby set nowrap
+autocmd FileType ruby set ts=2
+autocmd FileType ruby set shiftwidth=2 
+autocmd FileType ruby set shiftround
+autocmd FileType ruby set expandtab
 
 set textwidth=78
 
@@ -56,11 +65,11 @@ abbreviate teh the
 :map <F7> :setlocal spell! spelllang=en_au<cr> 
 :imap <F7> <C-o>:setlocal spell! spelllang=en_au<cr>
 
-au BufWinLeave * mkview " Save the fold view when we exit
-au BufWinEnter * silent loadview " Load the fold view when we open
 set foldenable " Turn on folding
 set foldcolumn=4 " One column for fold markers
 set foldmethod=marker " Fold on the marker
+au BufWinLeave * mkview " Save the fold view when we exit
+au BufWinEnter * silent loadview " Load the fold view when we open
 
 " Rails Maps & Abbreviations
 map <C-G> c_("<C-R>"")<ESC>
