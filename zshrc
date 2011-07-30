@@ -36,6 +36,7 @@ alias ls='ls -G'
 if [[ $HOME[2,5] == 'User' ]]; then
     # Mac Stuff
     alias ls='ls -G'
+    export LSCOLORS="Gxfxcxdxbxegedabagacad"
 else
     # Linux Stuff
     alias ls='ls --color=always'
