@@ -27,6 +27,7 @@ alias mv='nocorrect mv'       # no spelling correction on mv
 alias cp='nocorrect cp'       # no spelling correction on cp
 alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
 alias d='dirs -v'
+alias txt=vim
 
 export GREP_COLOR="${GREP_COLOR:-1;35}"
 alias grep='grep --color=always'
