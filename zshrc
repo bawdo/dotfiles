@@ -63,13 +63,13 @@ setopt extended_glob
 setopt nobeep
 watch=(all)
 
+# Set key bindings to vi
+bindkey -v
+
 # Key Bindings
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 bindkey "^r" history-incremental-search-backward
-
-# Set key bindings to vi
-bindkey -v
 
 # Ensure history expansion also works on space
 bindkey ' ' magic-space
