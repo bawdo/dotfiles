@@ -90,7 +90,7 @@ function! SetTitle()
 
     if (l:title != 'vi: __Tag_List__')
       let l:truncTitle = strpart(l:title, 0, 15)
-      silent exe '!echo -e -n "\033k' . l:truncTitle . '\033\
+      silent exe '!echo -e -n "\033k' . l:truncTitle . '\033\\"'
     endif
   endif
 endfunction
