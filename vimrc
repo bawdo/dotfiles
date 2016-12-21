@@ -49,9 +49,11 @@ set modeline
 
 " Create a backup of each file I edit.
 set backup
-" mkdir -pv ~/.vim/{backups,tmp}
+" mkdir -pv ~/.vim/{backups,tmp,swapfiles}
 set backupdir=~/.vim/backups 
 set directory=~/.vim/tmp
+" no more .swp in project tree
+:set directory=$HOME/.vim/swapfiles
 
 " Turnon tab completion for filenames, helptops, options et cetera
 set wildmode=list:longest,full
