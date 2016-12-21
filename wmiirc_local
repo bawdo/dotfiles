@@ -1,0 +1,11 @@
+MODKEY=Mod4
+UP=j
+DOWN=k
+LEFT=h
+RIGHT=l
+
+export WMII_FOCUSCOLORS='#3d3d3c #b6be59 #e1ed7f'
+export WMII_NORMCOLORS='#a1a1a1 #404040 #1a1a1a'
+export WMII_BACKGROUND='#d4d4d4'
+
+export WMII_FONT='xft:Sans-15'
