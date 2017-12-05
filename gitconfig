@@ -1,6 +1,7 @@
 [user]
-	email = you@example.com
-	name = Some Bloke/Blokette
+	email = <your email address> 
+	name = <your name> 
+	signingkey = <key you want to sign commits with> 
 
 [color]
         diff = auto
@@ -36,3 +37,6 @@
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	lgn = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	logs = log --show-signature
+[commit]
+	gpgsign = true

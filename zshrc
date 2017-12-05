@@ -144,3 +144,7 @@ PD()
 
 # Ruby Version Manager - http://rvm.beginrescueend.com/
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
+# golang stuff
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=~/go
