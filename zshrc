@@ -142,8 +142,10 @@ PD()
   pushd +$1
 }
 
-# Ruby Version Manager - http://rvm.beginrescueend.com/
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+# chruby
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
+chruby ruby-2.5.1 # Change this to the default ruby you would like to use
 
 # golang stuff
 export PATH=$PATH:/usr/local/go/bin
