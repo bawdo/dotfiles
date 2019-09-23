@@ -31,7 +31,6 @@ alias txt=vim
 
 export GREP_COLOR="${GREP_COLOR:-1;35}"
 alias grep='grep --color=always'
-alias ls='ls -G'
 
 ## Mac/Linux specific settings
 if [[ $HOME[2,5] == 'User' ]]; then
@@ -79,10 +78,6 @@ bindkey ' ' magic-space
 # line, after that line
 # runs command stack is popped
 bindkey "^t" push-line-or-edit
-
-# load colors
-autoload -U colors
-colors
 
 # Ensure less has some colour
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -145,7 +140,7 @@ PD()
 # chruby
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
-chruby ruby-2.5.1 # Change this to the default ruby you would like to use
+chruby ruby-2.5.3 # Change this to the default ruby you would like to use
 
 # golang stuff
 export PATH=$PATH:/usr/local/go/bin
