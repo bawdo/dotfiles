@@ -143,5 +143,5 @@ source /usr/local/share/chruby/auto.sh
 chruby ruby-2.5.3 # Change this to the default ruby you would like to use
 
 # golang stuff
-export PATH=$PATH:/usr/local/go/bin
 export GOPATH=~/go
+export PATH=$PATH:/usr/local/go/bin:${GOPATH//://bin:}/bin

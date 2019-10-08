@@ -99,3 +99,8 @@ endfunction
 
 " Run it every time we change buffers
 autocmd BufEnter,BufFilePost * call SetTitle()
+
+" https://tabnine.com
+set rtp+=~/.vim/tabnine-vim
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
