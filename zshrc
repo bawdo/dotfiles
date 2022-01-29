@@ -137,11 +137,8 @@ PD()
   pushd +$1
 }
 
-# chruby
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
-chruby ruby-2.5.3 # Change this to the default ruby you would like to use
+# frum - https://github.com/tako8ki/frum
+eval "$(frum init)"
 
 # golang stuff
-export GOPATH=~/go
-export PATH=$PATH:/usr/local/go/bin:${GOPATH//://bin:}/bin
+export PATH=$PATH:/usr/local/go/bin
